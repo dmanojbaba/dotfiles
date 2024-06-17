@@ -66,9 +66,23 @@ end
 
 hyper:bind(
     {},
+    "C",
+    function()
+        toggleApp("Visual Studio Code", "Code")
+    end
+)
+hyper:bind(
+    {},
     "D",
     function()
         toggleApp("Finder")
+    end
+)
+hyper:bind(
+    {},
+    "E",
+    function()
+        toggleApp("Microsoft Excel")
     end
 )
 hyper:bind(
@@ -87,23 +101,9 @@ hyper:bind(
 )
 hyper:bind(
     {},
-    "T",
+    "P",
     function()
-        toggleApp("Sublime Text")
-    end
-)
-hyper:bind(
-    {},
-    "C",
-    function()
-        toggleApp("Visual Studio Code", "Code")
-    end
-)
-hyper:bind(
-    {},
-    "X",
-    function()
-        toggleApp("Firefox")
+        toggleApp("Preview")
     end
 )
 hyper:bind(
@@ -115,9 +115,30 @@ hyper:bind(
 )
 hyper:bind(
     {},
+    "T",
+    function()
+        toggleApp("Sublime Text")
+    end
+)
+hyper:bind(
+    {},
     "W",
     function()
         toggleApp("WhatsApp")
+    end
+)
+hyper:bind(
+    {},
+    "X",
+    function()
+        toggleApp("Firefox")
+    end
+)
+hyper:bind(
+    {},
+    "Z",
+    function()
+        toggleApp("zoom.us")
     end
 )
 
