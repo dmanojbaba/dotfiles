@@ -1,33 +1,55 @@
 [alias]
-	aa = add --all :/
-	br = branch
-	cam = commit --amend --no-edit
-	cleanup = "!git fetch -p && git branch -vv | awk '/: gone]/{print $1}' | xargs -I{} git branch -D {}"
-	d = diff
-	dno = diff --name-only
-	ds = diff --staged
-	dsno = diff --name-only --staged
-	du = diff -U0
-	dw = diff -U0 --word-diff
-	l = log --all --graph --oneline --decorate -n 5
-	la = log --all --graph --oneline --decorate
-	main = checkout main
-	master = checkout master
-	p = pull
-	pushup = "!git push -u origin $(git branch --show-current)"
-	st = status
-	sw = switch
-	swc = switch -c
-	unstash = stash pop
-	whoami = config user.email
+aa = add --all :/
+br = branch
+cam = commit --amend --no-edit
+cl = "!git fetch -p && git branch -vv | awk '/: gone]/{print ($1==\"+\" || $1==\"*\") ? $2 : $1}' | xargs -I{} git branch -D {}"
+cldry = "!git fetch -p && git branch -vv | awk '/: gone]/{print ($1==\"+\" || $1==\"*\") ? $2 : $1}'"
+co = checkout
+cob = checkout -b
+d = diff
+dno = diff --name-only
+ds = diff --staged
+dsno = diff --name-only --staged
+dsu = diff --staged -U0
+dsw = diff --staged -U0 --word-diff
+du = diff -U0
+dw = diff -U0 --word-diff
+f = fetch
+l = log --all --graph --oneline --decorate -n 5
+la = log --all --graph --oneline --decorate
+m = "!git checkout $(git symbolic-ref refs/remotes/origin/HEAD | sed \"s@^refs/remotes/origin/@@\") && git pull"
+main = checkout main
+master = checkout master
+p = pull
+spclone = clone --filter=blob:none --sparse
+spco = sparse-checkout
+st = status
+sw = switch
+swc = switch -c
+unstash = stash pop
+whoami = config user.email
+wt = worktree
+
 [core]
-	pager = cat
-[pull]
-	ff = only
-[push]
-	default = current
-	autoSetupRemote = true
+pager = cat
+[diff]
+algorithm = histogram
+colorMoved = default
 [init]
-	defaultBranch = main
+defaultBranch = main
+[fetch]
+prune = true
+[merge]
+conflictStyle = zdiff3
+[pull]
+ff = only
+[push]
+default = current
+autoSetupRemote = true
+[rebase]
+autoSquash = true
+autoStash = true
+[rerere]
+enabled = true
 [include]
-	path = ~/dotfiles/_local/.gitconfig_local
+path = ~/dotfiles/_local/.gitconfig_local
