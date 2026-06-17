@@ -172,7 +172,7 @@ hyper_2 = false
 hyper_3 = false
 hyper_4 = false
 
-function moveToNextScreen(name, pos)
+function moveToNextScreen(name, pos, dir)
     local focused = hs.window.focusedWindow()
     if name then
         focused:moveToScreen(name)
@@ -184,7 +184,11 @@ function moveToNextScreen(name, pos)
             focused:maximize()
         end
     else
-        focused:moveToScreen(focused:screen():next())
+        if dir == "prev" then
+            focused:moveToScreen(focused:screen():previous())
+        else
+            focused:moveToScreen(focused:screen():next())
+        end
         local screenName = focused:screen():name()
         if screenName == MACBOOK_DISPLAY then
             focused:maximize()
@@ -200,7 +204,15 @@ end
 
 hyper:bind(
     {},
-    "N",
+    "left",
+    function()
+        moveToNextScreen(nil, nil, "prev")
+    end
+)
+
+hyper:bind(
+    {},
+    "right",
     function()
         moveToNextScreen()
     end
