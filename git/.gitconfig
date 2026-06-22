@@ -42,7 +42,7 @@ prune = true
 [merge]
 conflictStyle = zdiff3
 [pull]
-ff = only
+rebase = true
 [push]
 default = current
 autoSetupRemote = true
